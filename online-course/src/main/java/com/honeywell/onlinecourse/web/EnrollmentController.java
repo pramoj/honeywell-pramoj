@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.honeywell.onlinecourse.dto.EnrollCandidateDto;
+import com.honeywell.onlinecourse.exception.RecordNotFoundException;
 import com.honeywell.onlinecourse.model.EnrollCandidateEntity;
 import com.honeywell.onlinecourse.service.EnrollCandidateService;
 
@@ -26,7 +27,7 @@ public class EnrollmentController {
 	EnrollCandidateService service;
 
 	@PostMapping
-	public ResponseEntity<EnrollCandidateEntity> createCourse(EnrollCandidateDto enrollCandidateDto) {
+	public ResponseEntity<EnrollCandidateEntity> createCourse(EnrollCandidateDto enrollCandidateDto) throws RecordNotFoundException {
 		EnrollCandidateEntity updated = service.createEnroll(enrollCandidateDto);
 		return new ResponseEntity<EnrollCandidateEntity>(updated, new HttpHeaders(), HttpStatus.OK);
 	}
